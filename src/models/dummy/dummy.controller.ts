@@ -1,4 +1,5 @@
-import { Body, Controller, Get, HttpCode, Param, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post, Query, Req } from '@nestjs/common';
+import { Request } from 'supertest';
 import { DummyService } from './dummy.service';
 
 @Controller('dummy')
@@ -6,7 +7,8 @@ export class DummyController {
     constructor(private dummyService: DummyService) {}
 
     @Get() // http://localhost:3000/dummy  @GET
-    getDummy(){
+    getDummy(@Req() req: Request){
+        console.log("Test");
         return this.dummyService.getDummy();
     }
 

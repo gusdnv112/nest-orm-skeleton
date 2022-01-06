@@ -5,6 +5,7 @@
     "username": "root",
     "password": "qwer1234",
     "database": "stuff",
-    "entities": ["dist/**/*.entity{.ts,.js}"],
-    "synchronize": false
+    "entities": ["dist/models/**/*.entity{.ts,.js}"],
+    "synchronize": false,
+    "logging": true
   }
