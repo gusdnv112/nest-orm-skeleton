@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { promotionDto } from "./dto/promotion.dto";
 import { PromotionService } from "./promotion.service";
 
 @Controller('promotion')
@@ -11,7 +12,12 @@ export class PromotionController{
     }
     
     @Post()
-    insertPromotion(@Body('prmotion') body :object){
-        return this.promotionService.insertPromotion(body);
+    upsertPromotion(@Body('promotion') body :promotionDto){
+        return this.promotionService.upsertPromotion(body);
+    }
+
+    @Delete(':id')
+    deletePromotion(@Param('id') promotion_id: number){
+        return this.promotionService.deletePromotion(promotion_id);
     }
 }

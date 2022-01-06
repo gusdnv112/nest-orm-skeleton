@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { Repository } from "typeorm";
+import { promotionDto } from "./dto/promotion.dto";
 import { promotions } from "./entities/promotion.entity";
 import { PromotionRepository } from "./promotion.repository";
 
@@ -8,18 +9,26 @@ export class PromotionService {
 
     constructor(
         private promotionRepository: PromotionRepository
-        ) {        }
+        ) {}
 
     getPromotion(){
         return this.promotionRepository.find();
     }
 
-    insertPromotion(promotinon) {
+    upsertPromotion(body: promotionDto) {
         const today = new Date();
 
-        const promotions = { promotinon, today}
-        console.log(promotions);
+        body.updated_at = today;
 
-        return this.promotionRepository.save(promotinon);
+        const promotion = this.promotionRepository.findOne(body.promotion_id);
+        if(!promotion){
+            body.created_at = today;
+        }
+        return this.promotionRepository.save(body);
+    }
+
+    deletePromotion(param: number){
+        return this.promotionRepository.delete(param);
+
     }
 }
