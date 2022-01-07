@@ -1,0 +1,18 @@
+{
+    "redis":{ 
+        "host": "localhost",
+        "port": 6379,
+        "auth_pass": "0809"
+    },
+    "database": {
+        "type": "mysql",
+        "host": "127.0.0.1",
+        "port": 3306,
+        "username": "root",
+        "password": "qwer1234",
+        "database": "stuff",
+        "entities": ["dist/models/**/*.entity{.ts,.js}"],
+        "synchronize": false,
+        "logging": true
+      }
+  }

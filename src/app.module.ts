@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { CacheModule, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DummyController } from './models/dummy/dummy.controller';
 import { dummy2Middleware } from './models/dummy/dummy.middleware';
@@ -11,16 +11,25 @@ import { PromotionService } from './models/promotion/promotion.service';
 import { UserController } from './models/users/user.controller';
 import { UserModule } from './models/users/user.module';
 import { UserService } from './models/users/user.service';
-
+import { SessionController } from './models/session/session.controller';
+import { SessionService } from './models/session/session.service';
+import { SessionModule } from './models/session/session.module';
 @Module({
   imports: [
+    SessionModule,
     PromotionModule,
     UserModule,
     DummyModule,
     TypeOrmModule.forRoot()
-  ],
-  controllers: [UserController, DummyController, PromotionController],
-  providers: [UserService, DummyService, PromotionService],
+    ],
+  controllers: [
+    SessionController,
+    UserController, 
+    DummyController, 
+    PromotionController],
+  providers: [
+    SessionService,
+    UserService, DummyService, PromotionService],
 })
 export class AppModule{
 }

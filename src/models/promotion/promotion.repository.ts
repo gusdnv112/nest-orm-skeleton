@@ -9,12 +9,6 @@ export class PromotionRepository extends Repository<promotions>{
         return this.save(promotions);
     }
 
-    // async findAll(){
-    //     const promotions = this.
-    //     return promotions;
-    // }
     
-    hello(){
-        return "helo";
-    }
+
 }

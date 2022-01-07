@@ -10,6 +10,4 @@ import { PromotionService } from "./promotion.service";
     providers: [PromotionService],
     exports: [TypeOrmModule]
   })
-export class PromotionModule{
-
-}
+export class PromotionModule{}
